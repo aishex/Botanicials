@@ -1,5 +1,6 @@
 package com.botanicials.Botanicials.service;
 
+import com.botanicials.Botanicials.dto.UserPlantCollectionDTO;
 import com.botanicials.Botanicials.model.UserPlantCollection;
 import com.botanicials.Botanicials.repository.UserPlantCollectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +35,23 @@ public class UserPlantCollectionService {
                 .orElseThrow(() -> new RuntimeException("Plant not found."));
         userPlantCollectionRepository.delete(plant);
     }
+
+    // conversion userplantcollection -> userplancollectionDTO
+    public UserPlantCollectionDTO convertToDTO(UserPlantCollection userPlantCollection){
+        UserPlantCollectionDTO dto = new UserPlantCollectionDTO();
+        dto.setId(userPlantCollection.getId());
+        dto.setUserId(userPlantCollection.getUser().getId());
+        dto.setPlantId(userPlantCollection.getPlantId());
+        return dto;
+    }
+
+    // for list
+    public List<UserPlantCollectionDTO> getAllUserPlantCollectionsDTO(){
+        List<UserPlantCollection> collections = userPlantCollectionRepository.findAll();
+        return collections.stream()
+                .map(this::convertToDTO)
+                .toList();
+    }
+
 
 }

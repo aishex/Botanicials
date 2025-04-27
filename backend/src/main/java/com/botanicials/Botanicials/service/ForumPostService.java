@@ -1,5 +1,6 @@
 package com.botanicials.Botanicials.service;
 
+import com.botanicials.Botanicials.dto.ForumPostDTO;
 import com.botanicials.Botanicials.model.ForumPost;
 import com.botanicials.Botanicials.repository.ForumPostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +45,25 @@ public class ForumPostService {
         ForumPost forumPost = forumPostRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Post not found."));
         forumPostRepository.delete(forumPost);
+    }
+
+    // conversion forumpost -> forumpostDTO
+    public ForumPostDTO convertToDTO(ForumPost forumPost){
+        ForumPostDTO dto = new ForumPostDTO();
+        dto.setId(forumPost.getId());
+        dto.setUserId(forumPost.getUser().getId());
+        dto.setTitle(forumPost.getTitle());
+        dto.setContent(forumPost.getContent());
+        dto.setImageUrl(forumPost.getImageUrl());
+        dto.setCreatedAt(forumPost.getCreatedAt());
+        return dto;
+    }
+
+    // for list
+    public List<ForumPostDTO> getAllForumPostsDTO(){
+        List<ForumPost> posts = forumPostRepository.findAll();
+        return posts.stream()
+                .map(this::convertToDTO)
+                .toList();
     }
 }

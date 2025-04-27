@@ -1,5 +1,6 @@
 package com.botanicials.Botanicials.service;
 
+import com.botanicials.Botanicials.dto.UserPlantWishlistDTO;
 import com.botanicials.Botanicials.model.UserPlantWishlist;
 import com.botanicials.Botanicials.repository.UserPlantWishlistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +35,22 @@ public class UserPlantWishlistService {
         UserPlantWishlist userPlantWishlist = userPlantWishlistRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Wishlist plant not found."));
         userPlantWishlistRepository.delete(userPlantWishlist);
+    }
+
+    // conversion userplantwishlist -> userplantwishlistDTO
+    public UserPlantWishlistDTO convertToDTO(UserPlantWishlist userPlantWishlist){
+        UserPlantWishlistDTO dto = new UserPlantWishlistDTO();
+        dto.setId(userPlantWishlist.getId());
+        dto.setUserId(userPlantWishlist.getUser().getId());
+        dto.setPlantId(userPlantWishlist.getPlantId());
+        return dto;
+    }
+
+    // for list
+    public List<UserPlantWishlistDTO> getAllUserPlantWishlistDTO(){
+        List<UserPlantWishlist> wishlist = userPlantWishlistRepository.findAll();
+        return wishlist.stream()
+                .map(this::convertToDTO)
+                .toList();
     }
 }

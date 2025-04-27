@@ -1,5 +1,6 @@
 package com.botanicials.Botanicials.service;
 
+import com.botanicials.Botanicials.dto.ForumCommentsDTO;
 import com.botanicials.Botanicials.model.ForumComments;
 import com.botanicials.Botanicials.repository.ForumCommentsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +40,24 @@ public class ForumCommentsService {
     public void deleteComment(Long id){
         ForumComments comment = forumCommentsRepository.findById(id).orElseThrow(() -> new RuntimeException("Comment not found"));
         forumCommentsRepository.delete(comment);
+    }
+
+    // conversion forumcomment -> forumcommentDTO
+    public ForumCommentsDTO convertToDTO(ForumComments forumComments){
+        ForumCommentsDTO dto = new ForumCommentsDTO();
+        dto.setId(forumComments.getId());
+        dto.setForumPostId(forumComments.getForumPost().getId());
+        dto.setUserId(forumComments.getUser().getId());
+        dto.setContent(forumComments.getContent());
+        dto.setCreatedAt(forumComments.getCreatedAt());
+        return dto;
+    }
+
+    // for list
+    public List<ForumCommentsDTO> getAllCommentsDTO(){
+        List<ForumComments> comments = forumCommentsRepository.findAll();
+        return comments.stream()
+                .map(this::convertToDTO)
+                .toList();
     }
 }

@@ -1,5 +1,6 @@
 package com.botanicials.Botanicials.controller;
 
+import com.botanicials.Botanicials.dto.ForumCommentsDTO;
 import com.botanicials.Botanicials.model.ForumComments;
 import com.botanicials.Botanicials.service.ForumCommentsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,26 +17,32 @@ public class ForumCommentsController {
 
     // add new comment
     @PostMapping
-    public ForumComments addComment(@RequestBody ForumComments forumComments){
-        return forumCommentsService.addComment(forumComments);
+    public ForumCommentsDTO addComment(@RequestBody ForumComments forumComments){
+        ForumComments savedComment = forumCommentsService.addComment(forumComments);
+        return forumCommentsService.convertToDTO(savedComment);
     }
 
     // get all comments
     @GetMapping
-    public List<ForumComments> getAllComments(){
-        return forumCommentsService.getAllComments();
+    public List<ForumCommentsDTO> getAllComments(){
+        List<ForumComments> comments = forumCommentsService.getAllComments();
+        return comments.stream()
+                .map(forumCommentsService::convertToDTO)
+                .toList();
     }
 
     // get comment by id
     @GetMapping("/{id}")
-    public ForumComments getCommentById(@PathVariable Long id){
-        return forumCommentsService.getCommentById(id);
+    public ForumCommentsDTO getCommentById(@PathVariable Long id){
+        ForumComments comment = forumCommentsService.getCommentById(id);
+        return forumCommentsService.convertToDTO(comment);
     }
 
     // update comment
     @PutMapping("/{id}")
-    public ForumComments updateComment(@PathVariable Long id, @RequestBody ForumComments forumComments){
-        return forumCommentsService.updateComment(id, forumComments);
+    public ForumCommentsDTO updateComment(@PathVariable Long id, @RequestBody ForumComments forumComments){
+        ForumComments updatedComment = forumCommentsService.updateComment(id, forumComments);
+        return forumCommentsService.convertToDTO(updatedComment);
     }
 
     // delete comment
