@@ -38,10 +38,7 @@ public class UserController {
     // GET - get all users
     @GetMapping
     public ResponseEntity<List<UserDTO>> getAllUsers() {
-        List<User> users = userService.getAllUsers();
-        List<UserDTO> usersDTO = users.stream()
-                .map(userService::convertToDTO)
-                .collect(Collectors.toList());
+        List<UserDTO> usersDTO = userService.getAllUsersDTO();
         return new ResponseEntity<>(usersDTO, HttpStatus.OK);
     }
 
