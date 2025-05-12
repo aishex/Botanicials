@@ -11,9 +11,11 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig{
 
     private final OAuthService oAuthService;
+    private final JwtFilter jwtFilter;
 
-    public SecurityConfig(OAuthService oAuthService){
+    public SecurityConfig(OAuthService oAuthService, JwtFilter jwtFilter){
         this.oAuthService = oAuthService;
+        this.jwtFilter = jwtFilter;
     }
 
     @Bean

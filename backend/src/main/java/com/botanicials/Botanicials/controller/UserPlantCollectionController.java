@@ -4,6 +4,7 @@ import com.botanicials.Botanicials.dto.UserPlantCollectionDTO;
 import com.botanicials.Botanicials.model.UserPlantCollection;
 import com.botanicials.Botanicials.service.UserPlantCollectionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,8 +19,12 @@ public class UserPlantCollectionController {
 
     // add new plant to user's collection
     @PostMapping
-    public UserPlantCollectionDTO addPlantToCollection(@RequestBody UserPlantCollection userPlantCollection){
-        UserPlantCollection savedPlant = userPlantCollectionService.addPlantToCollection(userPlantCollection);
+    public UserPlantCollectionDTO addPlantToCollection(
+            @RequestBody UserPlantCollectionDTO userPlantCollectionDTO,
+            @org.springframework.security.core.annotation.AuthenticationPrincipal OAuth2User principal){
+
+        String email = principal.getAttribute("email");
+        UserPlantCollection savedPlant = userPlantCollectionService.addPlantToCollection(email, userPlantCollectionDTO);
         return userPlantCollectionService.convertToDTO(savedPlant);
     }
 
@@ -44,4 +49,16 @@ public class UserPlantCollectionController {
     public void deletePlant(@PathVariable Long id){
         userPlantCollectionService.deletePlant(id);
     }
+
+    // get user's plant collection
+    @GetMapping("/my")
+    public List<UserPlantCollectionDTO> getPlantCollection(@org.springframework.security.core.annotation.AuthenticationPrincipal OAuth2User principal){
+        String email = principal.getAttribute("email");
+        List<UserPlantCollection> plants = userPlantCollectionService.getAllPlants();
+        return plants.stream()
+                .filter(p -> p.getUser().getEmail().equals(email))
+                .map(userPlantCollectionService::convertToDTO)
+                .toList();
+    }
+
 }

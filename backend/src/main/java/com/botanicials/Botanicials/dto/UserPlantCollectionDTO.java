@@ -7,6 +7,7 @@ import lombok.Setter;
 public class UserPlantCollectionDTO {
 
     private Long id;
-    private Long userId;
     private Long plantId;
+    private String imageUrl;
+    private String plantName;
 }

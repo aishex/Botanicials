@@ -4,6 +4,7 @@ import com.botanicials.Botanicials.dto.UserPlantWishlistDTO;
 import com.botanicials.Botanicials.model.UserPlantWishlist;
 import com.botanicials.Botanicials.service.UserPlantWishlistService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,9 +18,13 @@ public class UserPlantWishlistController {
 
     // add new plant to wishlist
     @PostMapping
-    public UserPlantWishlistDTO addPlantToWishlist(@RequestBody UserPlantWishlist userPlantWishlist){
-        UserPlantWishlist savedPlant = userPlantWishlistService.addPlantToWishlist(userPlantWishlist);
-        return userPlantWishlistService.convertToDTO(savedPlant);
+    public UserPlantWishlistDTO addPlantToWishlist(
+            @RequestBody UserPlantWishlistDTO dto,
+            @org.springframework.security.core.annotation.AuthenticationPrincipal OAuth2User principal){
+        String email = principal.getAttribute("email");
+        UserPlantWishlist saved = userPlantWishlistService.addPlantToWishlist(email, dto);
+
+        return userPlantWishlistService.convertToDTO(saved);
     }
 
     // get all plants from wishlist
@@ -42,5 +47,16 @@ public class UserPlantWishlistController {
     @DeleteMapping("/{id}")
     public void deleteWishListPlant(@PathVariable Long id){
         userPlantWishlistService.deletePlant(id);
+    }
+
+    // get user's wishlist plants
+    @GetMapping("/my")
+    public List<UserPlantWishlistDTO> getWishlistPlants(@org.springframework.security.core.annotation.AuthenticationPrincipal OAuth2User principal){
+        String email = principal.getAttribute("email");
+        List<UserPlantWishlist> plants = userPlantWishlistService.getAllWishlistPlants();
+        return plants.stream()
+                .filter(p -> p.getUser().getEmail().equals(email))
+                .map(userPlantWishlistService::convertToDTO)
+                .toList();
     }
 }

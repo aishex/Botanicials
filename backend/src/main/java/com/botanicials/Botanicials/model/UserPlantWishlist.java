@@ -16,4 +16,6 @@ public class UserPlantWishlist {
     private User user;
 
     private Long plantId;
+    private String imageUrl;
+    private String plantName;
 }

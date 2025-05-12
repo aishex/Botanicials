@@ -1,8 +1,10 @@
 package com.botanicials.Botanicials.service;
 
 import com.botanicials.Botanicials.dto.UserPlantCollectionDTO;
+import com.botanicials.Botanicials.model.User;
 import com.botanicials.Botanicials.model.UserPlantCollection;
 import com.botanicials.Botanicials.repository.UserPlantCollectionRepository;
+import com.botanicials.Botanicials.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +16,20 @@ public class UserPlantCollectionService {
     @Autowired
     UserPlantCollectionRepository userPlantCollectionRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
     // add a plant to user's collection
-    public UserPlantCollection addPlantToCollection(UserPlantCollection userPlantCollection){
-        return userPlantCollectionRepository.save(userPlantCollection);
+    public UserPlantCollection addPlantToCollection(String userEmail, UserPlantCollectionDTO dto){
+        User user = userRepository.findByEmail(userEmail)
+                .orElseThrow(() -> new RuntimeException("User not found."));
+        UserPlantCollection plant = new UserPlantCollection();
+        plant.setUser(user);
+        plant.setPlantId(dto.getPlantId());
+        plant.setPlantName(dto.getPlantName());
+        plant.setImageUrl(dto.getImageUrl());
+
+        return userPlantCollectionRepository.save(plant);
     }
 
     // get all plants from user's collection
@@ -40,8 +53,9 @@ public class UserPlantCollectionService {
     public UserPlantCollectionDTO convertToDTO(UserPlantCollection userPlantCollection){
         UserPlantCollectionDTO dto = new UserPlantCollectionDTO();
         dto.setId(userPlantCollection.getId());
-        dto.setUserId(userPlantCollection.getUser().getId());
         dto.setPlantId(userPlantCollection.getPlantId());
+        dto.setPlantName(userPlantCollection.getPlantName());
+        dto.setImageUrl(userPlantCollection.getImageUrl());
         return dto;
     }
 
@@ -52,6 +66,5 @@ public class UserPlantCollectionService {
                 .map(this::convertToDTO)
                 .toList();
     }
-
 
 }
