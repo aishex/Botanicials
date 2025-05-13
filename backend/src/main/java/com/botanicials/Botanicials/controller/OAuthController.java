@@ -11,6 +11,7 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.util.Map;
 
 @RestController
@@ -21,8 +22,8 @@ public class OAuthController {
 
     // google redirect
     @GetMapping("/google/auth")
-    public String redirectToGoogleAuth() {
-        return "redirect:/oauth2/authorization/google";
+    public void redirectToGoogleAuth(HttpServletResponse response) throws IOException {
+        response.sendRedirect("/oauth2/authorization/google");
     }
 
     // callback
