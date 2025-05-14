@@ -21,14 +21,14 @@ public class UserPlantWishlistService {
     UserRepository userRepository;
 
     // save new plant to wishlist
-    public UserPlantWishlist addPlantToWishlist(String email, UserPlantWishlistDTO dto){
-        User user = userRepository.findByEmail(email)
+    public UserPlantWishlist addPlantToWishlist(Long userId, Long plantId){
+        User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
+
         UserPlantWishlist wishlist = new UserPlantWishlist();
         wishlist.setUser(user);
-        wishlist.setPlantId(dto.getPlantId());
-        wishlist.setImageUrl(dto.getImageUrl());
-        wishlist.setPlantName(dto.getPlantName());
+        wishlist.setPlantId(plantId);
+
         return userPlantWishlistRepository.save(wishlist);
     }
 
@@ -40,6 +40,11 @@ public class UserPlantWishlistService {
     // get wishlist plant by id
     public UserPlantWishlist getWishlistPlantById(@PathVariable Long id){
         return userPlantWishlistRepository.findById(id).orElse(null);
+    }
+
+    // get wishlist plant by user
+    public List<UserPlantWishlist> getAllWishlistPlantsByUser(Long userId) {
+        return userPlantWishlistRepository.findByUserId(userId);
     }
 
     // delete wishlist plant by id
@@ -66,4 +71,6 @@ public class UserPlantWishlistService {
                 .map(this::convertToDTO)
                 .toList();
     }
+
+
 }

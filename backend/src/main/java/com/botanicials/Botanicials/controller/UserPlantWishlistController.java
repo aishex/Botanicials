@@ -3,11 +3,14 @@ package com.botanicials.Botanicials.controller;
 import com.botanicials.Botanicials.dto.UserPlantWishlistDTO;
 import com.botanicials.Botanicials.model.UserPlantWishlist;
 import com.botanicials.Botanicials.service.UserPlantWishlistService;
+import com.botanicials.Botanicials.config.JwtUtil;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/user-plant-wishlist")
@@ -19,10 +22,11 @@ public class UserPlantWishlistController {
     // add new plant to wishlist
     @PostMapping
     public UserPlantWishlistDTO addPlantToWishlist(
-            @RequestBody UserPlantWishlistDTO dto,
-            @org.springframework.security.core.annotation.AuthenticationPrincipal OAuth2User principal){
-        String email = principal.getAttribute("email");
-        UserPlantWishlist saved = userPlantWishlistService.addPlantToWishlist(email, dto);
+            @RequestBody Map<String, Long> body, HttpServletRequest request){
+
+            Long plantId = body.get("plantId");
+            Long userId = JwtUtil.getUserIdFromRequest(request);
+            UserPlantWishlist saved = userPlantWishlistService.addPlantToWishlist(userId, plantId);
 
         return userPlantWishlistService.convertToDTO(saved);
     }
@@ -50,13 +54,13 @@ public class UserPlantWishlistController {
     }
 
     // get user's wishlist plants
-    @GetMapping("/my")
-    public List<UserPlantWishlistDTO> getWishlistPlants(@org.springframework.security.core.annotation.AuthenticationPrincipal OAuth2User principal){
-        String email = principal.getAttribute("email");
-        List<UserPlantWishlist> plants = userPlantWishlistService.getAllWishlistPlants();
+    @GetMapping("/wishlist/my")
+    public List<UserPlantWishlistDTO> getWishlistPlants(HttpServletRequest request){
+        Long userId = JwtUtil.getUserIdFromRequest(request);
+        List<UserPlantWishlist> plants = userPlantWishlistService.getAllWishlistPlantsByUser(userId);
         return plants.stream()
-                .filter(p -> p.getUser().getEmail().equals(email))
                 .map(userPlantWishlistService::convertToDTO)
                 .toList();
     }
+
 }
