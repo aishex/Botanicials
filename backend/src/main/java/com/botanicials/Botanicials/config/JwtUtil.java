@@ -3,8 +3,11 @@ package com.botanicials.Botanicials.config;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 
 import java.security.Key;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Map;
 
@@ -25,4 +28,21 @@ public class JwtUtil {
     public static Key getKey() {
         return key;
     }
+
+    public static Long getUserIdFromRequest(HttpServletRequest request) {
+        String token = Arrays.stream(request.getCookies())
+                .filter(c -> "auth".equals(c.getName()))
+                .map(Cookie::getValue)
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("cookie not found"));
+
+        var claims = Jwts.parserBuilder()
+                .setSigningKey(getKey())
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+
+        return ((Integer) claims.get("id")).longValue();
+    }
+
 }
