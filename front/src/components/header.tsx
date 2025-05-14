@@ -15,7 +15,7 @@ function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="bg-dark-beige relative flex items-center justify-between px-4 py-2 text-white">
+    <header className="bg-dark-beige relative z-10 flex items-center justify-between px-4 py-2 text-white">
       <button
         className="hover:bg-dark-beige-hover flex h-10 w-10 cursor-pointer items-center justify-center rounded-full transition-colors duration-200 ease-in-out md:hidden"
         onClick={() => setIsOpen((prev) => !prev)}
