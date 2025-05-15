@@ -6,7 +6,6 @@ import com.botanicials.Botanicials.service.UserPlantWishlistService;
 import com.botanicials.Botanicials.config.JwtUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
