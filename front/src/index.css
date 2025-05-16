@@ -13,9 +13,3 @@
   --color-light-green: #7a9179;
   --color-dark-green: #527350;
 }
-
-/* @layer base {
-  * {
-    @apply focus-visible:outline-none;
-  }
-} */

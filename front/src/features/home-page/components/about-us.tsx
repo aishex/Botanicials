@@ -1,8 +1,8 @@
 function AboutUs() {
   return (
-    <div className="bg-dark-beige relative z-10 space-y-4 rounded-xl p-4 text-white">
+    <div className="bg-dark-beige relative mx-auto max-w-[1200px] space-y-4 rounded-xl p-4 text-white">
       <h2 className="text-3xl">About us.</h2>
-      <div className="space-y-2">
+      <div className="space-y-1">
         <p>Witaj na naszej stronie!</p>
         <p>
           Tworzymy przestrzeń dla wszystkich miłośników roślin — od
@@ -11,9 +11,9 @@ function AboutUs() {
           aby każdy mógł cieszyć się ich pięknem w swoim domu, ogrodzie czy na
           balkonie. Wierzymy, że kontakt z naturą poprawia jakość życia. Dlatego
           codziennie inspirujemy, edukujemy i pomagamy tworzyć zielone
-          przestrzenie, które zachwycają. Dołącz do naszej roślinnej
-          społeczności!
+          przestrzenie, które zachwycają.
         </p>
+        <p>Dołącz do naszej roślinnej społeczności!</p>
       </div>
     </div>
   );

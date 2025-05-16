@@ -3,7 +3,7 @@ import Header from "../components/header";
 
 function Layout() {
   return (
-    <div className="grid h-dvh grid-rows-[auto_1fr] overflow-hidden">
+    <div className="grid h-dvh grid-rows-[auto_1fr] overflow-auto">
       <Header />
       <main className="grow">
         <Outlet />
