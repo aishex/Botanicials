@@ -1,6 +1,6 @@
 function AboutUs() {
   return (
-    <div className="bg-dark-beige relative z-10 space-y-4 rounded-xl px-2 py-4 text-white">
+    <div className="bg-dark-beige relative z-10 space-y-4 rounded-xl p-4 text-white">
       <h2 className="text-3xl">About us.</h2>
       <div className="space-y-2">
         <p>Witaj na naszej stronie!</p>

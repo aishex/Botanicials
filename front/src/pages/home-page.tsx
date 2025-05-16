@@ -12,7 +12,7 @@ function HomePage() {
 
       <div>
         <Link to={`/plant/${plantId}`}>
-          <div className="bg-dark-green rounded-xl px-6 py-4 text-white">
+          <div className="bg-dark-green rounded-xl p-4 text-white">
             <p className="mb-2 text-xs">ZNAJDŹ COŚ DLA SIEBIE</p>
             <h2 className="mb-6 text-3xl">Roślina dnia</h2>
             <img
