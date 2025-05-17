@@ -53,7 +53,7 @@ function MobileNav({ onClose }: Props) {
             to="/wishlist"
             onClick={onClose}
           >
-            <div className="rounded-full bg-pink-600 p-2">
+            <div className="rounded-full bg-pink-400 p-2">
               <Heart color="white" strokeWidth={1.5} />
             </div>
             <span>Wishlist</span>
@@ -65,7 +65,7 @@ function MobileNav({ onClose }: Props) {
             to="/wishlist"
             onClick={onClose}
           >
-            <div className="rounded-full bg-green-600 p-2">
+            <div className="rounded-full bg-green-900 p-2">
               <CheckCircle color="white" strokeWidth={1.5} />
             </div>
             <span>Owned</span>

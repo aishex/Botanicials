@@ -1,13 +1,21 @@
-import GoogleLogoIcon from "../components/GoogleLogoIcon"; // Import the new SVG icon
+import { redirect } from "react-router";
+import GoogleLogoIcon from "../components/GoogleLogoIcon";
 import { API_URL } from "../const/constants";
+import { useAuth } from "../hooks/use-auth";
 
 function LoginPage() {
   const handleGoogleLogin = () => {
     window.location.href = `${API_URL}/auth/google`;
   };
 
+  const { data: user } = useAuth();
+
+  if (user) {
+    return redirect("/");
+  }
+
   return (
-    <div className="bg-lighest-beige flex h-full items-center justify-center">
+    <div className="bg-lighest-beige flex h-full items-center justify-center px-4">
       <div className="border-dark w-full max-w-[450px] space-y-4 rounded-lg border p-6">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-[--color-dark-green]">
