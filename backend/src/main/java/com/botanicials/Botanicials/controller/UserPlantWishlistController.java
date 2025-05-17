@@ -47,9 +47,11 @@ public class UserPlantWishlistController {
     }
 
     // delete wishlist plant by id
-    @DeleteMapping("/{id}")
-    public void deleteWishListPlant(@PathVariable Long id){
-        userPlantWishlistService.deletePlant(id);
+    @DeleteMapping
+    public void deleteWishlistPlant(@RequestBody Map<String, Long> body, HttpServletRequest request) {
+        Long plantId = body.get("plantId");
+        Long userId = JwtUtil.getUserIdFromRequest(request);
+        userPlantWishlistService.deletePlantFromWishlist(userId, plantId);
     }
 
     // get user's wishlist plants
@@ -61,5 +63,4 @@ public class UserPlantWishlistController {
                 .map(userPlantWishlistService::convertToDTO)
                 .toList();
     }
-
 }

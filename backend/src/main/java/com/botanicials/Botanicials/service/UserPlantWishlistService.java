@@ -48,10 +48,10 @@ public class UserPlantWishlistService {
     }
 
     // delete wishlist plant by id
-    public void deletePlant(Long id){
-        UserPlantWishlist userPlantWishlist = userPlantWishlistRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Wishlist plant not found."));
-        userPlantWishlistRepository.delete(userPlantWishlist);
+    public void deletePlantFromWishlist(Long userId, Long plantId) {
+        UserPlantWishlist item = userPlantWishlistRepository.findByUserIdAndPlantId(userId, plantId)
+                .orElseThrow(() -> new RuntimeException("Plant not found in wishlist"));
+        userPlantWishlistRepository.delete(item);
     }
 
     // conversion userplantwishlist -> userplantwishlistDTO
