@@ -37,6 +37,7 @@ public class JwtFilter extends OncePerRequestFilter {
 
         if (authCookie.isPresent()){
             String token = authCookie.get().getValue();
+            System.out.println("JwtFilter: token = " + token);
 
             try {
                 Claims claims = Jwts.parserBuilder()
