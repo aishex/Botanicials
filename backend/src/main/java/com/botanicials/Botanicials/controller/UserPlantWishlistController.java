@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/user-plant-wishlist")
+@RequestMapping("/wishlist")
 public class UserPlantWishlistController {
 
     @Autowired
@@ -55,7 +55,7 @@ public class UserPlantWishlistController {
     }
 
     // get user's wishlist plants
-    @GetMapping("/wishlist/my")
+    @GetMapping("/my")
     public List<UserPlantWishlistDTO> getWishlistPlants(HttpServletRequest request){
         Long userId = JwtUtil.getUserIdFromRequest(request);
         List<UserPlantWishlist> plants = userPlantWishlistService.getAllWishlistPlantsByUser(userId);
