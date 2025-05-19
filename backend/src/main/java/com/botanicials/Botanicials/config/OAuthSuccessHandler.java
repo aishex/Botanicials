@@ -31,7 +31,10 @@ public class OAuthSuccessHandler implements AuthenticationSuccessHandler {
         String email = oauthUser.getAttribute("email");
         User foundUser = userService.findByEmail(email);
         Long userId = foundUser.getId();
-        String token = JwtUtil.generateToken(Map.of("id", userId));
+        String token = JwtUtil.generateToken(Map.of(
+                "id", userId,
+                "email", email
+        ));
 
         Cookie cookie = new Cookie("auth", token);
         cookie.setHttpOnly(true);
