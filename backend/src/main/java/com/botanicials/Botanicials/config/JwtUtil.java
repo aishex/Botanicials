@@ -1,7 +1,6 @@
 package com.botanicials.Botanicials.config;
 
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,7 +12,9 @@ import java.util.Map;
 
 public class JwtUtil {
 
-    private static final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    private static final String SECRET = "dGhpcyBpcyBhIHNlY3JldCBrZXkgZm9yIEpXVCB0aGF0IGlzIGxvbmc=";
+    private static final Key key = Keys.hmacShaKeyFor(SECRET.getBytes());
+
     private static final long EXPIRATION_TIME = 86400000 * 7; // 7 days
 
     public static String generateToken(Map<String, Object> claims){
@@ -25,11 +26,11 @@ public class JwtUtil {
                 .compact();
     }
 
-    public static Key getKey() {
+    public static Key getKey(){
         return key;
     }
 
-    public static Long getUserIdFromRequest(HttpServletRequest request) {
+    public static Long getUserIdFromRequest(HttpServletRequest request){
         String token = Arrays.stream(request.getCookies())
                 .filter(c -> "auth".equals(c.getName()))
                 .map(Cookie::getValue)
