@@ -20,16 +20,14 @@ public class UserPlantCollectionService {
     UserRepository userRepository;
 
     // add a plant to user's collection
-    public UserPlantCollection addPlantToCollection(String userEmail, UserPlantCollectionDTO dto){
-        User user = userRepository.findByEmail(userEmail)
-                .orElseThrow(() -> new RuntimeException("User not found."));
-        UserPlantCollection plant = new UserPlantCollection();
-        plant.setUser(user);
-        plant.setPlantId(dto.getPlantId());
-        plant.setPlantName(dto.getPlantName());
-        plant.setImageUrl(dto.getImageUrl());
-
-        return userPlantCollectionRepository.save(plant);
+    public UserPlantCollection addPlantToCollection(Long userId, Long plantId, String plantName, String imageUrl) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found."));
+        UserPlantCollection collection = new UserPlantCollection();
+        collection.setUser(user);
+        collection.setPlantId(plantId);
+        collection.setPlantName(plantName);
+        collection.setImageUrl(imageUrl);
+        return userPlantCollectionRepository.save(collection);
     }
 
     // get all plants from user's collection
@@ -67,4 +65,15 @@ public class UserPlantCollectionService {
                 .toList();
     }
 
+    // delete plant from user's collection
+    public void deletePlantFromCollection(Long userId, Long plantId) {
+        var plant = userPlantCollectionRepository.findByUserIdAndPlantId(userId, plantId)
+                .orElseThrow(() -> new RuntimeException("plant not found in user's collection"));
+        userPlantCollectionRepository.delete(plant);
+    }
+
+    // get all user's plants
+    public List<UserPlantCollection> getAllPlantsByUser(Long userId) {
+        return userPlantCollectionRepository.findAllByUserId(userId);
+    }
 }
