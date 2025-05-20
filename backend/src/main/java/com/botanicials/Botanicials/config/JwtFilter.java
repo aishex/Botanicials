@@ -37,7 +37,6 @@ public class JwtFilter extends OncePerRequestFilter {
 
         if (authCookie.isPresent()){
             String token = authCookie.get().getValue();
-            System.out.println("JwtFilter: token = " + token);
 
             try {
                 Claims claims = Jwts.parserBuilder()
@@ -54,19 +53,16 @@ public class JwtFilter extends OncePerRequestFilter {
 
                     authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     SecurityContextHolder.getContext().setAuthentication(authentication);
-                    System.out.println("JwtFilter: authenticated user " + email);
                 } else {
-                    System.out.println("JwtFilter: email claim missing");
                     SecurityContextHolder.clearContext();
                 }
 
             } catch (Exception e) {
-                System.out.println("JwtFilter error: " + e.getMessage());
                 e.printStackTrace();
                 SecurityContextHolder.clearContext();
             }
         } else {
-            System.out.println("JwtFilter: no auth cookie found");
+            System.out.println("cookie not found");
         }
         filterChain.doFilter(request, response);
     }

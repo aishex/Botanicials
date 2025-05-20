@@ -28,7 +28,8 @@ public class UserPlantWishlistService {
         UserPlantWishlist wishlist = new UserPlantWishlist();
         wishlist.setUser(user);
         wishlist.setPlantId(plantId);
-
+        wishlist.setPlantName(null);
+        wishlist.setImageUrl(null);
         return userPlantWishlistRepository.save(wishlist);
     }
 

@@ -43,5 +43,9 @@ public class OAuthController {
         return ResponseEntity.ok(Map.of("user", user));
     }
 
-
+    // logout
+    @GetMapping("/auth/logout")
+    public void logout(HttpServletResponse response) throws IOException {
+        response.sendRedirect("/logout");
+    }
 }
