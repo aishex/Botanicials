@@ -4,13 +4,15 @@ import { API_URL } from "../const/constants";
 type User = {
   id: string;
   email: string;
-  google_id: string;
-  image_url: string;
+  googleId: string;
+  imageUrl: string;
   name: string;
 };
 
 async function getUser(): Promise<User | null> {
-  const res = await fetch(`${API_URL}/auth/me`);
+  const res = await fetch(`${API_URL}/auth/me`, {
+    credentials: "include",
+  });
 
   if (!res.ok) {
     throw new Error(`Failed to fetch user. Status: ${res.status}`);
@@ -18,15 +20,11 @@ async function getUser(): Promise<User | null> {
 
   const data = await res.json();
 
-  if (data && Object.keys(data).length === 0) {
+  if (!data.user) {
     return null;
   }
 
-  if (data && data.id) {
-    return data as User;
-  }
-
-  throw new Error("Unexpected data structure received for user.");
+  return data.user;
 }
 
 export const useAuth = () => {

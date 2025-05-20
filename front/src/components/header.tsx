@@ -10,7 +10,7 @@ function Header() {
 
   return (
     <header className="bg-dark-beige relative z-10 px-4 py-2 text-white">
-      <div className="mx-auto flex w-full max-w-[1920px] items-start justify-between">
+      <div className="mx-auto flex w-full max-w-[1920px] items-start justify-between gap-10">
         <MobileNavTrigger isOpen={isOpen} setIsOpen={setIsOpen} />
         <HeaderLogo />
 

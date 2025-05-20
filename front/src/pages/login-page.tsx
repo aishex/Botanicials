@@ -1,18 +1,19 @@
-import { redirect } from "react-router";
+import { useNavigate } from "react-router";
 import GoogleLogoIcon from "../components/GoogleLogoIcon";
 import { API_URL } from "../const/constants";
 import { useAuth } from "../hooks/use-auth";
 
 function LoginPage() {
+  const { data: user } = useAuth();
+  const navigate = useNavigate();
+
+  if (user) {
+    navigate("/");
+  }
+
   const handleGoogleLogin = () => {
     window.location.href = `${API_URL}/auth/google`;
   };
-
-  const { data: user } = useAuth();
-
-  if (user) {
-    return redirect("/");
-  }
 
   return (
     <div className="bg-lighest-beige flex h-full items-center justify-center px-4">
