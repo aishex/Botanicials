@@ -8,7 +8,7 @@ type Props = {
 function MobileNavTrigger({ isOpen, setIsOpen }: Props) {
   return (
     <button
-      className="hover:bg-dark-beige-hover flex h-10 w-10 cursor-pointer items-center justify-center rounded-full transition-colors duration-200 ease-in-out md:hidden"
+      className="hover:bg-dark-beige-hover flex h-10 w-10 cursor-pointer items-center justify-center rounded-full transition-colors duration-200 ease-in-out lg:hidden"
       onClick={() => setIsOpen((prev) => !prev)}
     >
       <span className="sr-only">Menu</span>

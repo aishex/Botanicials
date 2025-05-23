@@ -25,7 +25,7 @@ function MobileNav({ onClose }: Props) {
 
   return (
     <nav
-      className="bg-dark-beige absolute top-full left-0 z-[999] flex h-screen w-fit flex-col items-start p-4 md:hidden"
+      className="bg-dark-beige absolute top-full left-0 z-[999] flex h-screen w-fit flex-col items-start p-4 lg:hidden"
       ref={navRef}
     >
       <div className="bg-light-beige mb-6 flex w-full items-center justify-between rounded-full px-4 py-2">
@@ -53,7 +53,7 @@ function MobileNav({ onClose }: Props) {
             to="/wishlist"
             onClick={onClose}
           >
-            <div className="rounded-full bg-pink-600 p-2">
+            <div className="rounded-full bg-pink-400 p-2">
               <Heart color="white" strokeWidth={1.5} />
             </div>
             <span>Wishlist</span>
@@ -65,7 +65,7 @@ function MobileNav({ onClose }: Props) {
             to="/wishlist"
             onClick={onClose}
           >
-            <div className="rounded-full bg-green-600 p-2">
+            <div className="rounded-full bg-green-900 p-2">
               <CheckCircle color="white" strokeWidth={1.5} />
             </div>
             <span>Owned</span>

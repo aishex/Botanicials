@@ -1,39 +1,37 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { API_URL } from "../const/constants";
 
 type User = {
-  name: string;
+  id: string;
   email: string;
-  picture: string;
+  googleId: string;
+  imageUrl: string;
+  name: string;
 };
 
+async function getUser(): Promise<User | null> {
+  const res = await fetch(`${API_URL}/auth/me`, {
+    credentials: "include",
+  });
+
+  if (!res.ok) {
+    throw new Error(`Failed to fetch user. Status: ${res.status}`);
+  }
+
+  const data = await res.json();
+
+  if (!data.user) {
+    return null;
+  }
+
+  return data.user;
+}
+
 export const useAuth = () => {
-  const [user, setUser] = useState<User | null>(null);
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await fetch(`${API_URL}/auth/me`, {
-          credentials: "include",
-        });
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch user");
-        }
-        const data = await response.json();
-        if (!data) {
-          setUser(null);
-        }
-        setUser(data);
-      } catch (error) {
-        console.error("Error fetching user:", error);
-        setUser(null);
-      }
-    };
-    fetchUser();
-  }, []);
-
-  return {
-    user,
-  };
+  return useQuery<User | null>({
+    queryKey: ["user"],
+    queryFn: getUser,
+    retry: false,
+    staleTime: 60 * 60 * 1000,
+  });
 };
