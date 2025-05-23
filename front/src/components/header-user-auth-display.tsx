@@ -63,8 +63,16 @@ function LoggedInUserProfile({
     };
   }, []);
 
-  const handleLogout = () => {
-    console.log("Logging out...");
+  const handleLogout = async () => {
+    try {
+      await fetch("http://localhost:8080/auth/logout", {
+        method: "POST",
+        credentials: "include",
+      });
+      window.location.href = "/login";
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
   };
 
   return (
@@ -78,7 +86,7 @@ function LoggedInUserProfile({
           aria-label={`Logged in as ${user.name}. Click to open user menu.`}
         >
           <UserAvatarDisplay user={user} isLoggedIn={true} />
-          <p className="line-clamp-1 max-w-20 overflow-y-auto">{user.name}</p>
+          <p className="line-clamp-1 max-w-20">{user.name}</p>
         </button>
         {isOpen && (
           <div
