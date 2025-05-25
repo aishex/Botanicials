@@ -3,9 +3,9 @@ import Header from "../components/header";
 
 function Layout() {
   return (
-    <div className="grid h-dvh grid-rows-[auto_1fr] overflow-auto">
+    <div className="grid min-h-dvh grid-rows-[auto_1fr] overflow-auto">
       <Header />
-      <main className="grow">
+      <main>
         <Outlet />
       </main>
     </div>
