@@ -1,6 +1,6 @@
 // import { useParams } from "react-router";
 import { CheckCircle, Heart } from "lucide-react";
-import { useFetchPlantInfo } from "../features/plant-page/hooks/use-fetch-plant-info";
+import { useFetchPlantInfo } from "../features/plant-page/hooks/useFetchPlantInfo";
 // import { useAuth } from "../hooks/use-auth";
 import { useParams } from "react-router";
 
@@ -61,8 +61,11 @@ function PlantPage() {
           <p className="font-medium">{data.description}</p>
         </div>
         <img
-          loading="lazy"
-          src={data.default_image.original_url}
+          src={
+            data.default_image
+              ? data.default_image?.original_url
+              : "https://placehold.co/600x400?text=Image+Placeholder"
+          }
           alt={data.common_name}
           className="h-64 w-full rounded-2xl object-cover md:order-1 md:h-80 md:max-w-[450px] md:object-fill"
         />
@@ -75,7 +78,7 @@ export default PlantPage;
 
 const Wrapper = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="bg-lighest-beige flex h-full justify-center px-4 py-20">
+    <div className="bg-lighest-beige flex h-full justify-center px-6 py-20">
       {children}
     </div>
   );

@@ -1,14 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-
-export type Plant = {
-  id: number;
-  common_name: string;
-  care_level: string;
-  default_image: {
-    original_url: string;
-  };
-  description: string;
-};
+import { Plant } from "../../common/types/plant-type";
 
 const fetchPlantInfo = async (plantId: string) => {
   if (!plantId) {

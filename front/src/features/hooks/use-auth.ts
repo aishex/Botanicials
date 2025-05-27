@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { API_URL } from "../const/constants";
+import { API_URL } from "../../const/constants";
 
 type User = {
   id: string;
@@ -33,5 +33,6 @@ export const useAuth = () => {
     queryFn: getUser,
     retry: false,
     staleTime: 60 * 60 * 1000,
+    refetchOnWindowFocus: false,
   });
 };
