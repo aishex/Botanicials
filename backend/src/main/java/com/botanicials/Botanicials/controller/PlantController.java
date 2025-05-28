@@ -18,13 +18,14 @@ public class PlantController {
 
     // fetch all plants or search by name
     @GetMapping
-    public ResponseEntity<String> getPlants(@RequestParam(required = false) String name) {
+    public ResponseEntity<String> getPlants(
+            @RequestParam(required = false) String name,
+            @RequestParam(defaultValue = "1") int page){
 
-        String url;
-        if (name != null && !name.isEmpty()){
-            url = "https://perenual.com/api/v2/species-list?key=" + token + "&q=" + name;
-        } else {
-            url = "https://perenual.com/api/v2/species-list?key=" + token;
+        String url = "https://perenual.com/api/v2/species-list?key=" + token + "&page=" + page;
+
+        if (name != null && !name.isEmpty()) {
+            url += "&q=" + name;
         }
 
         ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);

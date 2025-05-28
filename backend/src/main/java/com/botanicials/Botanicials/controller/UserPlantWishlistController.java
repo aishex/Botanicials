@@ -30,22 +30,6 @@ public class UserPlantWishlistController {
         return userPlantWishlistService.convertToDTO(saved);
     }
 
-    // get all plants from wishlist
-    @GetMapping
-    public List<UserPlantWishlistDTO> getAllWishlistPlants(){
-        List<UserPlantWishlist> plants = userPlantWishlistService.getAllWishlistPlants();
-        return plants.stream()
-                .map(userPlantWishlistService::convertToDTO)
-                .toList();
-    }
-
-    // get wishlist plant by id
-    @GetMapping("/{id}")
-    public UserPlantWishlistDTO getWishlistPlantById(@PathVariable Long id){
-        UserPlantWishlist plant = userPlantWishlistService.getWishlistPlantById(id);
-        return userPlantWishlistService.convertToDTO(plant);
-    }
-
     // delete wishlist plant by id
     @DeleteMapping
     public void deleteWishlistPlant(@RequestBody Map<String, Long> body, HttpServletRequest request) {
@@ -55,12 +39,13 @@ public class UserPlantWishlistController {
     }
 
     // get user's wishlist plants
-    @GetMapping("/my")
-    public List<UserPlantWishlistDTO> getWishlistPlants(HttpServletRequest request){
+    @GetMapping
+    public List<UserPlantWishlistDTO> getWishlistPlants(HttpServletRequest request) {
         Long userId = JwtUtil.getUserIdFromRequest(request);
         List<UserPlantWishlist> plants = userPlantWishlistService.getAllWishlistPlantsByUser(userId);
         return plants.stream()
                 .map(userPlantWishlistService::convertToDTO)
                 .toList();
     }
+
 }

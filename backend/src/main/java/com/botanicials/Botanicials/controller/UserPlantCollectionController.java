@@ -6,7 +6,6 @@ import com.botanicials.Botanicials.model.UserPlantCollection;
 import com.botanicials.Botanicials.service.UserPlantCollectionService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
