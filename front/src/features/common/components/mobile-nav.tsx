@@ -1,6 +1,7 @@
-import { CheckCircle, Heart, Search } from "lucide-react";
+import { CheckCircle, Heart } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { Link } from "react-router";
+import PlantQueryInput from "./plant-query-input";
 
 type Props = {
   onClose: () => void;
@@ -28,14 +29,7 @@ function MobileNav({ onClose }: Props) {
       className="bg-dark-beige absolute top-full left-0 z-[999] flex h-screen w-fit flex-col items-start p-4 lg:hidden"
       ref={navRef}
     >
-      <div className="bg-light-beige mb-6 flex w-full items-center justify-between rounded-full px-4 py-2">
-        <input
-          type="text"
-          placeholder="Search..."
-          className="grow text-white"
-        />
-        <Search className="text-white" />
-      </div>
+      <PlantQueryInput className="mb-6" />
       <ul className="flex flex-col gap-6 text-2xl">
         <li className="hover:underline">
           <Link to="/" onClick={onClose}>

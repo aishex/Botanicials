@@ -1,5 +1,6 @@
-import { CheckCircle, Heart, Search } from "lucide-react";
+import { CheckCircle, Heart } from "lucide-react";
 import { Link } from "react-router";
+import PlantQueryInput from "./plant-query-input";
 
 function DesktopNavigation() {
   return (
@@ -10,14 +11,7 @@ function DesktopNavigation() {
       <Link className="text-2xl" to="/forum">
         Forum
       </Link>
-      <div className="bg-light-beige flex w-full items-center justify-between rounded-full px-4 py-2">
-        <input
-          type="text"
-          placeholder="Search..."
-          className="grow text-white"
-        />
-        <Search className="text-white" />
-      </div>
+      <PlantQueryInput />
       <UserActionLinks />
     </nav>
   );

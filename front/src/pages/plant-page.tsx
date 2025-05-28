@@ -1,4 +1,3 @@
-// import { useParams } from "react-router";
 import { CheckCircle, Heart } from "lucide-react";
 import { useFetchPlantInfo } from "../features/plant-page/hooks/useFetchPlantInfo";
 // import { useAuth } from "../hooks/use-auth";
