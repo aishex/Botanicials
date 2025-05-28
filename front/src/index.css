@@ -13,3 +13,8 @@
   --color-light-green: #7a9179;
   --color-dark-green: #527350;
 }
+
+*:focus-visible {
+  outline: 3px solid var(--color-dark-green);
+  outline-offset: 4px;
+}

@@ -1,11 +1,11 @@
-import { useParams } from "react-router";
+import { useSearchParams } from "react-router";
 import PlantCard from "../features/plants-page/components/plant-card";
 import { useFetchPlants } from "../features/plants-page/hooks/useFetchPlants";
 import React from "react";
 
 function PlantsPage() {
-  // const { data: plants, isLoading, error } = useFetchPlants();
-  const { query } = useParams();
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get("query") || "";
 
   const {
     data,
