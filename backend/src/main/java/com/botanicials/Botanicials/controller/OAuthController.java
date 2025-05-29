@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
-import java.security.Principal;
 import java.util.Map;
 
 @RestController
@@ -48,6 +47,4 @@ public class OAuthController {
     public void logout(HttpServletResponse response) throws IOException {
         response.sendRedirect("/logout");
     }
-
-
 }
