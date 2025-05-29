@@ -3,6 +3,7 @@ import HomePage from "./pages/home-page";
 import Layout from "./layout/layout";
 import LoginPage from "./pages/login-page";
 import PlantPage from "./pages/plant-page";
+import PlantsPage from "./pages/plants-page";
 
 function App() {
   return (
@@ -10,7 +11,8 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path="login" element={<LoginPage />} />
-        <Route path="plant/:plantId" element={<PlantPage />} />
+        <Route path="plants" element={<PlantsPage />} />
+        <Route path="plants/:plantId" element={<PlantPage />} />
         <Route path="*" element={<div>404 Not Found</div>} />
       </Route>
     </Routes>

@@ -9,7 +9,7 @@ type Props = {
 
 function LinkCard({ title, imageUrl }: Props) {
   return (
-    <Link to={`/plant/${plantId}`}>
+    <Link to={`/plants/${plantId}`}>
       <div className="bg-dark-green grid h-full grid-rows-[64px,1fr] rounded-xl p-4 text-white">
         <h2 className="row-span-2 mb-6 text-3xl md:text-2xl">{title}</h2>
         <img
