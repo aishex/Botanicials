@@ -4,9 +4,12 @@ import com.botanicials.Botanicials.dto.ForumCommentsDTO;
 import com.botanicials.Botanicials.model.ForumComments;
 import com.botanicials.Botanicials.service.ForumCommentsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/comments")
@@ -17,37 +20,42 @@ public class ForumCommentsController {
 
     // add new comment
     @PostMapping
-    public ForumCommentsDTO addComment(@RequestBody ForumComments forumComments){
+    public ResponseEntity<ForumCommentsDTO> addComment(@RequestBody ForumComments forumComments){
         ForumComments savedComment = forumCommentsService.addComment(forumComments);
-        return forumCommentsService.convertToDTO(savedComment);
+        return new ResponseEntity<>(forumCommentsService.convertToDTO(savedComment), HttpStatus.CREATED);
     }
 
     // get all comments
     @GetMapping
-    public List<ForumCommentsDTO> getAllComments(){
+    public ResponseEntity<List<ForumCommentsDTO>> getAllComments(){
         List<ForumComments> comments = forumCommentsService.getAllComments();
-        return comments.stream()
+        List<ForumCommentsDTO> commentDTOs = comments.stream()
                 .map(forumCommentsService::convertToDTO)
-                .toList();
+                .collect(Collectors.toList());
+        return new ResponseEntity<>(commentDTOs, HttpStatus.OK);
     }
 
     // get comment by id
     @GetMapping("/{id}")
-    public ForumCommentsDTO getCommentById(@PathVariable Long id){
+    public ResponseEntity<ForumCommentsDTO> getCommentById(@PathVariable Long id){
         ForumComments comment = forumCommentsService.getCommentById(id);
-        return forumCommentsService.convertToDTO(comment);
+        if (comment == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(forumCommentsService.convertToDTO(comment), HttpStatus.OK);
     }
 
     // update comment
     @PutMapping("/{id}")
-    public ForumCommentsDTO updateComment(@PathVariable Long id, @RequestBody ForumComments forumComments){
+    public ResponseEntity<ForumCommentsDTO> updateComment(@PathVariable Long id, @RequestBody ForumComments forumComments){
         ForumComments updatedComment = forumCommentsService.updateComment(id, forumComments);
-        return forumCommentsService.convertToDTO(updatedComment);
+        return new ResponseEntity<>(forumCommentsService.convertToDTO(updatedComment), HttpStatus.OK);
     }
 
     // delete comment
     @DeleteMapping("/{id}")
-    public void DeleteComment(@PathVariable Long id){
+    public ResponseEntity<Void> deleteComment(@PathVariable Long id){
         forumCommentsService.deleteComment(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

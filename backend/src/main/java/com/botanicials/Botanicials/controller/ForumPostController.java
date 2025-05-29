@@ -4,9 +4,12 @@ import com.botanicials.Botanicials.dto.ForumPostDTO;
 import com.botanicials.Botanicials.model.ForumPost;
 import com.botanicials.Botanicials.service.ForumPostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/posts")
@@ -17,37 +20,42 @@ public class ForumPostController {
 
     // add new post
     @PostMapping
-    public ForumPostDTO addForumPost(@RequestBody ForumPost forumPost){
+    public ResponseEntity<ForumPostDTO> addForumPost(@RequestBody ForumPost forumPost){
         ForumPost savedPost = forumPostService.addForumPost(forumPost);
-        return forumPostService.convertToDTO(savedPost);
+        return new ResponseEntity<>(forumPostService.convertToDTO(savedPost), HttpStatus.CREATED);
     }
 
     // get all posts
     @GetMapping
-    public List<ForumPostDTO> getAllForumPosts(){
+    public ResponseEntity<List<ForumPostDTO>> getAllForumPosts(){
         List<ForumPost> posts = forumPostService.getAllForumPosts();
-        return posts.stream()
+        List<ForumPostDTO> postDTOs = posts.stream()
                 .map(forumPostService::convertToDTO)
-                .toList();
+                .collect(Collectors.toList());
+        return new ResponseEntity<>(postDTOs, HttpStatus.OK);
     }
 
     // get post by id
     @GetMapping("/{id}")
-    public ForumPostDTO getForumPostById(@PathVariable Long id){
+    public ResponseEntity<ForumPostDTO> getForumPostById(@PathVariable Long id){
         ForumPost post = forumPostService.getForumPostById(id);
-        return forumPostService.convertToDTO(post);
+        if (post == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(forumPostService.convertToDTO(post), HttpStatus.OK);
     }
 
     // update post
     @PutMapping("/{id}")
-    public ForumPostDTO updateForumPost(@PathVariable Long id, @RequestBody ForumPost forumPost){
+    public ResponseEntity<ForumPostDTO> updateForumPost(@PathVariable Long id, @RequestBody ForumPost forumPost){
         ForumPost updatedPost = forumPostService.updatePost(id, forumPost);
-        return forumPostService.convertToDTO(updatedPost);
+        return new ResponseEntity<>(forumPostService.convertToDTO(updatedPost), HttpStatus.OK);
     }
 
     // delete post
     @DeleteMapping("/{id}")
-    public void deletePost(@PathVariable Long id) {
+    public ResponseEntity<Void> deletePost(@PathVariable Long id){
         forumPostService.deleteForumPost(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
