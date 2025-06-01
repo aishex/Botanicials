@@ -21,15 +21,16 @@ public class UserPlantWishlistService {
     UserRepository userRepository;
 
     // save new plant to wishlist
-    public UserPlantWishlist addPlantToWishlist(Long userId, Long plantId){
+    public UserPlantWishlist addPlantToWishlist(Long userId, Long plantId, String plantName, String imageUrl){
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         UserPlantWishlist wishlist = new UserPlantWishlist();
         wishlist.setUser(user);
         wishlist.setPlantId(plantId);
-        wishlist.setPlantName(null);
-        wishlist.setImageUrl(null);
+        wishlist.setPlantName(plantName);
+        wishlist.setImageUrl(imageUrl);
+
         return userPlantWishlistRepository.save(wishlist);
     }
 

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/collection")
@@ -21,7 +20,9 @@ public class UserPlantCollectionController {
 
     // add new plant to user's collection
     @PostMapping
-    public UserPlantCollectionDTO addPlantToCollection(@RequestBody Map<String, String> body, HttpServletRequest request) {
+    public UserPlantCollectionDTO addPlantToCollection(
+            @RequestBody Map<String, String> body, HttpServletRequest request){
+
         Long userId = JwtUtil.getUserIdFromRequest(request);
         Long plantId = Long.valueOf(body.get("plantId"));
         String plantName = body.get("plantName");
@@ -29,15 +30,6 @@ public class UserPlantCollectionController {
 
         UserPlantCollection savedPlant = userPlantCollectionService.addPlantToCollection(userId, plantId, plantName, imageUrl);
         return userPlantCollectionService.convertToDTO(savedPlant);
-    }
-
-    // get all plants from all users
-    @GetMapping
-    public List<UserPlantCollectionDTO> getAllPlants(){
-        List<UserPlantCollection> plants = userPlantCollectionService.getAllPlants();
-        return plants.stream()
-                .map(userPlantCollectionService::convertToDTO)
-                .collect(Collectors.toList());
     }
 
     // delete plant by id
@@ -49,7 +41,7 @@ public class UserPlantCollectionController {
     }
 
     // get user's plant collection
-    @GetMapping("/my")
+    @GetMapping
     public List<UserPlantCollectionDTO> getPlantCollection(HttpServletRequest request) {
         Long userId = JwtUtil.getUserIdFromRequest(request);
         List<UserPlantCollection> plants = userPlantCollectionService.getAllPlantsByUser(userId);
