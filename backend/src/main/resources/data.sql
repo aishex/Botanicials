@@ -1,6 +1,7 @@
 -- test user
 INSERT INTO users (id, email, name, google_id, image_url)
-VALUES (50, 'test@example.com', 'Test User', '12345', 'https://ipicasso.pl/image/cache/data/goods/00000004867-800x800.jpg');
+VALUES (50, 'test@example.com', 'Test User', '12345', 'https://ipicasso.pl/image/cache/data/goods/00000004867-800x800.jpg')
+ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO users (id, email, name, google_id, image_url)
 VALUES (51, 'jane.doe@example.com', 'Jane Doe', '67890', 'https://plus.unsplash.com/premium_photo-1671656349322-41de944d259b?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
@@ -17,7 +18,8 @@ VALUES (
   'Mam problem z żółknięciem liści. Co robić?',
   'https://v.wpimg.pl/ZTMzMjc0dTUsGDtZTEt4IG9AbwMKEnZ2OFh3SEwGamR9AnlaUwB1MiQWKBgGQDV6Kgg4GgJHKno9FmILE1l1InxVKQMQQDY1NFUoBwFVPnt8GHVaBwlpZ2AfeAsFHW5nek9gU1EFY3l8SStSVlVpZ39NeQ9BTQ',
   NOW()
-);
+)
+ON CONFLICT (id) DO NOTHING;
 
 -- Additional Posts
 INSERT INTO forum_post (id, user_id, title, content, image_url, created_at)

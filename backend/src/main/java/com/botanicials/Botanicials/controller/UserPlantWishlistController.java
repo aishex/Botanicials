@@ -21,12 +21,14 @@ public class UserPlantWishlistController {
     // add new plant to wishlist
     @PostMapping
     public UserPlantWishlistDTO addPlantToWishlist(
-            @RequestBody Map<String, Long> body, HttpServletRequest request){
+            @RequestBody Map<String, String> body, HttpServletRequest request){
 
-            Long plantId = body.get("plantId");
-            Long userId = JwtUtil.getUserIdFromRequest(request);
-            UserPlantWishlist saved = userPlantWishlistService.addPlantToWishlist(userId, plantId);
+        Long userId = JwtUtil.getUserIdFromRequest(request);
+        Long plantId = Long.valueOf(body.get("plantId"));
+        String plantName = body.get("plantName"); // common_name
+        String imageUrl = body.get("imageUrl");
 
+        UserPlantWishlist saved = userPlantWishlistService.addPlantToWishlist(userId, plantId, plantName, imageUrl);
         return userPlantWishlistService.convertToDTO(saved);
     }
 
@@ -47,5 +49,4 @@ public class UserPlantWishlistController {
                 .map(userPlantWishlistService::convertToDTO)
                 .toList();
     }
-
 }
