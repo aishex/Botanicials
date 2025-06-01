@@ -9,10 +9,13 @@ const addItemToListApi = async (plant: Plant, listType: ListType) => {
   const res = await fetch(endpointUrl, {
     method: "POST",
     credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({
       plantId: plant.id,
-      commonName: plant.common_name,
-      imageUrl: plant.default_image?.medium_url,
+      plantName: plant.common_name,
+      imageUrl: plant.default_image?.medium_url || "",
     }),
   });
 
@@ -40,7 +43,6 @@ export const useAddItemToList = (userId: string, listType: ListType) => {
       queryClient.invalidateQueries({ queryKey: [userId, listType] });
     },
     onError: (error: Error) => {
-      // Optional: handle error, e.g., show a notification
       console.error(`Error adding item to ${listType}:`, error.message);
     },
   });

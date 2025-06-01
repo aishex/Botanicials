@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { API_URL } from "../../../const/constants";
-import { Plant } from "../types/plant-type";
+import { ListResponse } from "./use-users-collection";
 
 async function getWishlist() {
   const res = await fetch(`${API_URL}/wishlist`, {
@@ -17,7 +17,7 @@ async function getWishlist() {
 }
 
 export const useUsersWishlist = (userId: string) => {
-  return useQuery<Plant[]>({
+  return useQuery<ListResponse[]>({
     queryKey: [userId, "wishlist"],
     queryFn: getWishlist,
     retry: false,

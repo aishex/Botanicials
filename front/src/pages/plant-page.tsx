@@ -1,4 +1,4 @@
-import { CheckCircle, Heart } from "lucide-react";
+import { CheckCircle, Heart, X } from "lucide-react";
 import { useFetchPlantInfo } from "../features/plant-page/hooks/useFetchPlantInfo";
 import { useParams } from "react-router";
 import { useAuth } from "../features/common/hooks/use-auth";
@@ -56,14 +56,14 @@ function PlantPage() {
     data &&
     wishlist &&
     !isLoadingWishlist &&
-    wishlist.some((item) => item.id === data.id);
+    wishlist.some((item) => item.plantId === data.id);
 
   const isPlantInCollection =
     isLoggedIn &&
     data &&
     collection &&
     !isLoadingCollection &&
-    collection.some((item) => item.id === data.id);
+    collection.some((item) => item.plantId === data.id);
 
   return (
     <Wrapper>
@@ -144,14 +144,11 @@ function PlantPage() {
                 }
               }}
             >
-              <CheckCircle
-                color="white"
-                size={26}
-                fill={
-                  isPlantInCollection && isLoggedIn ? "white" : "transparent"
-                }
-                strokeWidth="1.5"
-              />
+              {isPlantInCollection ? (
+                <X color="white" size={26} strokeWidth="1.5" />
+              ) : (
+                <CheckCircle color="white" size={26} strokeWidth="1.5" />
+              )}
             </button>
           </div>
           <p className="mb-6 text-sm font-semibold">

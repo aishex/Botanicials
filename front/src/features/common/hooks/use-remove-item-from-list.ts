@@ -7,6 +7,9 @@ const removeItemFromList = async (plantId: number, listType: ListType) => {
   const res = await fetch(endpointUrl, {
     method: "DELETE",
     credentials: "include",
+    headers: {
+      "Content-type": "application/json",
+    },
     body: JSON.stringify({
       plantId,
     }),
@@ -15,9 +18,6 @@ const removeItemFromList = async (plantId: number, listType: ListType) => {
   if (!res.ok) {
     throw new Error(`Failed to add plant ${plantId} to ${listType}.`);
   }
-
-  const data = await res.json();
-  return data;
 };
 
 export const useRemoveItemFromList = (userId: string, listType: ListType) => {
@@ -28,6 +28,9 @@ export const useRemoveItemFromList = (userId: string, listType: ListType) => {
       removeItemFromList(plantId, listType),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [userId, listType] });
+    },
+    onError: (error: Error) => {
+      console.error(`Error removing item from ${listType}:`, error.message);
     },
   });
 };

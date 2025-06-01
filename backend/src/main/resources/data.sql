@@ -38,7 +38,7 @@ VALUES (
   52,
   'Pomocy! Moja paprotka usycha.',
   'Liście mojej paprotki robią się brązowe i suche na końcach. Stoi w półcieniu, podlewam regularnie.',
-  "https://plus.unsplash.com/premium_photo-1673292293042-cafd9c8a3ab3?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  'https://plus.unsplash.com/premium_photo-1673292293042-cafd9c8a3ab3?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   NOW()
 );
 
@@ -58,7 +58,7 @@ VALUES (
   51,
   'DIY nawóz do roślin doniczkowych',
   'Czy ktoś ma sprawdzone przepisy na domowe nawozy? Chciałabym spróbować czegoś naturalnego.',
-  "https://images.unsplash.com/photo-1531875456634-3f5418280d20?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  'https://images.unsplash.com/photo-1531875456634-3f5418280d20?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   NOW()
 );
 
@@ -78,7 +78,7 @@ VALUES (
   50,
   'Kiedy przesadzać storczyki?',
   'Mam kilka storczyków i zastanawiam się, kiedy jest najlepszy moment na ich przesadzenie.',
-  "https://images.unsplash.com/photo-1463320898484-cdee8141c787?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  'https://images.unsplash.com/photo-1463320898484-cdee8141c787?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   NOW()
 );
 
@@ -98,7 +98,7 @@ VALUES (
   52,
   'Jak ukorzenić gałązkę figowca?',
   'Dostałem gałązkę figowca i chciałbym ją ukorzenić. Jakieś wskazówki?',
-  "https://images.unsplash.com/photo-1470058869958-2a77ade41c02?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  'https://images.unsplash.com/photo-1470058869958-2a77ade41c02?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   NOW()
 );
 

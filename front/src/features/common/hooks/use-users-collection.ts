@@ -1,6 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import { API_URL } from "../../../const/constants";
-import { Plant } from "../types/plant-type";
+
+export type ListResponse = {
+  id: number;
+  plantId: number;
+  imageUrl: string;
+  plantName: string;
+};
 
 async function getCollection() {
   const res = await fetch(`${API_URL}/collection`, {
@@ -17,7 +23,7 @@ async function getCollection() {
 }
 
 export const useUsersCollection = (userId: string) => {
-  return useQuery<Plant[]>({
+  return useQuery<ListResponse[]>({
     queryKey: [userId, "collection"],
     queryFn: getCollection,
     retry: false,
