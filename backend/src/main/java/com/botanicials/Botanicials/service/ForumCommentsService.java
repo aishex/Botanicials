@@ -32,6 +32,11 @@ public class ForumCommentsService {
         return forumCommentsRepository.findById(id).orElse(null);
     }
 
+    // get comment by post id
+    public List<ForumComments> getCommentsByPostId(Long postId){
+        return forumCommentsRepository.findByForumPost_Id(postId);
+    }
+
     // update comment
     public ForumComments updateComment(Long id, ForumComments forumCommentsDetails){
         ForumComments comment = forumCommentsRepository.findById(id).orElseThrow(() -> new RuntimeException("Comment not found"));
