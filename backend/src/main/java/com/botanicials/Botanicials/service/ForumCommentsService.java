@@ -2,6 +2,7 @@ package com.botanicials.Botanicials.service;
 
 import com.botanicials.Botanicials.dto.ForumCommentsDTO;
 import com.botanicials.Botanicials.model.ForumComments;
+import com.botanicials.Botanicials.model.User;
 import com.botanicials.Botanicials.repository.ForumCommentsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,6 +53,13 @@ public class ForumCommentsService {
         dto.setUserId(forumComments.getUser().getId());
         dto.setContent(forumComments.getContent());
         dto.setCreatedAt(forumComments.getCreatedAt());
+
+        User user = forumComments.getUser();
+        if (user != null){
+            dto.setUserName(user.getName());
+            dto.setUserImageUrl(user.getImageUrl());
+        }
+
         return dto;
     }
 

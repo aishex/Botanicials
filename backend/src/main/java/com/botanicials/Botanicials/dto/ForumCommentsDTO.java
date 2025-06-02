@@ -7,9 +7,12 @@ import java.time.LocalDateTime;
 
 @Getter @Setter
 public class ForumCommentsDTO {
+
     private Long id;
     private Long forumPostId;
     private Long userId;
+    private String userName;
+    private String userImageUrl;
     private String content;
     private LocalDateTime createdAt;
 }
