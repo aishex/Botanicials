@@ -5,11 +5,11 @@ import { formatDate, truncateContent } from "../../common/utils/utils";
 function ForumPostcard({ post }: { post: ForumPost }) {
   return (
     <Link key={post.id} to={`/forum/${post.id}`} className="block">
-      <div className="relative flex aspect-square flex-col justify-between overflow-hidden rounded-2xl bg-[#d4c4a8] p-6">
+      <div className="relative flex aspect-square flex-col justify-between overflow-hidden rounded-2xl bg-[#d4c4a8] px-6 pt-6 pb-4">
         {post.imageUrl ? (
           <div className="absolute inset-0">
             <img
-              src={post.imageUrl || "/placeholder.svg"}
+              src={post.imageUrl}
               alt={post.title}
               className="h-full w-full object-cover"
               crossOrigin="anonymous"
@@ -29,7 +29,7 @@ function ForumPostcard({ post }: { post: ForumPost }) {
           </div>
         </div>
 
-        <div className="relative z-10">
+        <div className="relative z-10 overflow-y-scroll">
           <h3 className="mb-3 text-lg leading-tight font-bold text-white drop-shadow-md">
             {truncateContent(post.title, 50)}
           </h3>

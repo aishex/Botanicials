@@ -1,5 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { API_URL } from "../../../const/constants";
+import { ForumPost } from "./use-fetch-forum-posts";
+
+export type ExtendedForumPost = ForumPost & { userImageUrl: string };
 
 const fetchPostInfo = async (postId: string) => {
   const res = await fetch(`${API_URL}/posts/${postId}`);
@@ -10,7 +13,7 @@ const fetchPostInfo = async (postId: string) => {
 };
 
 export const useFetchForumPost = (postId: string) => {
-  return useQuery({
+  return useQuery<ExtendedForumPost>({
     queryKey: ["forumPost", postId],
     queryFn: () => fetchPostInfo(postId),
     retry: false,

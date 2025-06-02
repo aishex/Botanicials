@@ -1,6 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import { API_URL } from "../../../const/constants";
 
+export type PostComment = {
+  content: string;
+  createdAt: Date;
+  id: number;
+  forumPostId: number;
+  userId: number;
+  userImageUrl: string;
+  userName: string;
+};
+
 const fetchPostComments = async (postId: string) => {
   const res = await fetch(`${API_URL}/comments/post/${postId}`);
   if (!res.ok) {
@@ -10,7 +20,7 @@ const fetchPostComments = async (postId: string) => {
 };
 
 export const useFetchPostComments = (postId: string) => {
-  return useQuery({
+  return useQuery<PostComment[]>({
     queryKey: ["postComments", postId],
     queryFn: () => fetchPostComments(postId),
     retry: false,
