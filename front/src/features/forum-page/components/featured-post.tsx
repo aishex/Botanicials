@@ -37,7 +37,7 @@ function FeaturedPost({ featuredPost }: { featuredPost: ForumPost }) {
             {formatDate(featuredPost.createdAt)}
           </div>
           <div className="mb-4 text-base font-medium opacity-95 text-shadow-sm">
-            <p>meow</p>
+            <p>{featuredPost.userName}</p>
           </div>
           <h1 className="mb-6 text-3xl leading-tight font-bold text-shadow-md">
             {featuredPost.title}

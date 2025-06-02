@@ -25,7 +25,7 @@ function ForumPostcard({ post }: { post: ForumPost }) {
             {formatDate(post.createdAt)}
           </div>
           <div className="mb-2 text-sm font-medium opacity-90 drop-shadow-md">
-            <p>meow</p>
+            <p>{post.userName}</p>
           </div>
         </div>
 

@@ -113,7 +113,7 @@ VALUES (
 ON CONFLICT (id) DO NOTHING;
 
 
---comment
+-- comment
 INSERT INTO forum_comments (id, forum_post_id, user_id, content, created_at)
 VALUES (1, 1, 50, 'Spróbuj podlewać raz na 10 dni i nie przestawiaj jej.', NOW())
 ON CONFLICT (id) DO NOTHING;

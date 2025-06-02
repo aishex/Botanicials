@@ -8,6 +8,7 @@ export type ForumPost = {
   userId: number;
   createdAt: Date;
   imageUrl?: string;
+  userName: string;
 };
 
 const fetchForumPosts = async () => {
