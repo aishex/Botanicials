@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { API_URL } from "../../../const/constants";
 
 const fetchPostComments = async (postId: string) => {
-  const res = await fetch(`${API_URL}/comments/${postId}`);
+  const res = await fetch(`${API_URL}/comments/post/${postId}`);
   if (!res.ok) {
     throw new Error("Failed to fetch comments");
   }

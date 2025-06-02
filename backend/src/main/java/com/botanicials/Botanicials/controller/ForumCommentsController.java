@@ -45,6 +45,16 @@ public class ForumCommentsController {
         return new ResponseEntity<>(forumCommentsService.convertToDTO(comment), HttpStatus.OK);
     }
 
+    // get all comments for a specific post
+    @GetMapping("/post/{postId}")
+    public ResponseEntity<List<ForumCommentsDTO>> getCommentsByPostId(@PathVariable Long postId){
+        List<ForumComments> comments = forumCommentsService.getCommentsByPostId(postId);
+        List<ForumCommentsDTO> commentDTOs = comments.stream()
+                .map(forumCommentsService::convertToDTO)
+                .collect(Collectors.toList());
+        return new ResponseEntity<>(commentDTOs, HttpStatus.OK);
+    }
+
     // update comment
     @PutMapping("/{id}")
     public ResponseEntity<ForumCommentsDTO> updateComment(@PathVariable Long id, @RequestBody ForumComments forumComments){
