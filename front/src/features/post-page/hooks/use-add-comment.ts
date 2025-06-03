@@ -1,8 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { API_URL } from "../../../const/constants";
 
-// TODO: change logic cos right now it's not working
-
 type NewComment = {
   content: string;
   forumPostId: number;

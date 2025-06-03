@@ -114,59 +114,96 @@ ON CONFLICT (id) DO NOTHING;
 
 
 -- comment
-INSERT INTO forum_comments (id, forum_post_id, user_id, content, created_at)
-VALUES (1, 1, 50, 'Spróbuj podlewać raz na 10 dni i nie przestawiaj jej.', NOW())
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO forum_comments (forum_post_id, user_id, content, created_at)
+VALUES (1, 50, 'Spróbuj podlewać raz na 10 dni i nie przestawiaj jej.', NOW());
 
 -- Additional Comments
 -- Comments for post 2
-INSERT INTO forum_comments (id, forum_post_id, user_id, content, created_at)
-VALUES (2, 2, 50, 'Najlepsze są terakotowe, bo dobrze oddychają.', NOW())
-ON CONFLICT (id) DO NOTHING;
-INSERT INTO forum_comments (id, forum_post_id, user_id, content, created_at)
-VALUES (3, 2, 52, 'Zgadzam się, terakota super. I pamiętaj o otworach drenażowych!', NOW())
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO forum_comments (forum_post_id, user_id, content, created_at)
+VALUES (2, 50, 'Najlepsze są terakotowe, bo dobrze oddychają.', NOW());
+
+INSERT INTO forum_comments (forum_post_id, user_id, content, created_at)
+VALUES (2, 52, 'Zgadzam się, terakota super. I pamiętaj o otworach drenażowych!', NOW());
 
 -- Comments for post 3
-INSERT INTO forum_comments (id, forum_post_id, user_id, content, created_at)
-VALUES (4, 3, 50, 'Może ma za sucho? Paprotki lubią wilgoć. Spróbuj zraszać.', NOW())
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO forum_comments (forum_post_id, user_id, content, created_at)
+VALUES (3, 50, 'Może ma za sucho? Paprotki lubią wilgoć. Spróbuj zraszać.', NOW());
 
 -- Comments for post 4
-INSERT INTO forum_comments (id, forum_post_id, user_id, content, created_at)
-VALUES (5, 4, 51, 'Zamiokulkas jest nie do zdarcia!', NOW())
-ON CONFLICT (id) DO NOTHING;
-INSERT INTO forum_comments (id, forum_post_id, user_id, content, created_at)
-VALUES (6, 4, 52, 'Sansewieria też da radę.', NOW())
-ON CONFLICT (id) DO NOTHING;
-INSERT INTO forum_comments (id, forum_post_id, user_id, content, created_at)
-VALUES (7, 4, 50, 'A skrzydłokwiat? Podobno dobrze znosi cień.', NOW())
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO forum_comments (forum_post_id, user_id, content, created_at)
+VALUES (
+  4,
+  51,
+  'Zamiokulkas jest nie do zdarcia!',
+  NOW()
+);
+
+INSERT INTO forum_comments (forum_post_id, user_id, content, created_at)
+VALUES (
+  4,
+  52,
+  'Sansewieria też da radę.',
+  NOW()
+);
+
+INSERT INTO forum_comments (forum_post_id, user_id, content, created_at)
+VALUES (
+  4,
+  50,
+  'A skrzydłokwiat? Podobno dobrze znosi cień.',
+  NOW()
+);
 
 -- Comments for post 5 (no comments)
 
 -- Comments for post 6
-INSERT INTO forum_comments (id, forum_post_id, user_id, content, created_at)
-VALUES (8, 6, 50, 'Spróbuj roztworu wody z szarym mydłem.', NOW())
-ON CONFLICT (id) DO NOTHING;
-INSERT INTO forum_comments (id, forum_post_id, user_id, content, created_at)
-VALUES (9, 6, 51, 'Ja używam olejku neem, działa cuda.', NOW())
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO forum_comments (forum_post_id, user_id, content, created_at)
+VALUES (
+  6,
+  50,
+  'Spróbuj roztworu wody z szarym mydłem.',
+  NOW()
+);
+
+INSERT INTO forum_comments (forum_post_id, user_id, content, created_at)
+VALUES (
+  6,
+  51,
+  'Ja używam olejku neem, działa cuda.',
+  NOW()
+);
 
 -- Comments for post 7
-INSERT INTO forum_comments (id, forum_post_id, user_id, content, created_at)
-VALUES (10, 7, 52, 'Najlepiej po kwitnieniu, jak korzenie zaczynają wyrastać z doniczki.', NOW())
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO forum_comments (forum_post_id, user_id, content, created_at)
+VALUES (
+  7,
+  52,
+  'Najlepiej po kwitnieniu, jak korzenie zaczynają wyrastać z doniczki.',
+  NOW()
+);
 
 -- Comments for post 8
-INSERT INTO forum_comments (id, forum_post_id, user_id, content, created_at)
-VALUES (11, 8, 50, 'Skrzydłokwiat, sansewieria, epipremnum, zielistka, dracena.', NOW())
-ON CONFLICT (id) DO NOTHING;
-INSERT INTO forum_comments (id, forum_post_id, user_id, content, created_at)
-VALUES (12, 8, 52, 'Dokładnie! Moje top 5.', NOW())
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO forum_comments (forum_post_id, user_id, content, created_at)
+VALUES (
+  8,
+  50,
+  'Skrzydłokwiat, sansewieria, epipremnum, zielistka, dracena.',
+  NOW()
+);
+
+INSERT INTO forum_comments (forum_post_id, user_id, content, created_at)
+VALUES (
+  8,
+  52,
+  'Dokładnie! Moje top 5.',
+  NOW()
+);
 
 -- Comments for post 9
-INSERT INTO forum_comments (id, forum_post_id, user_id, content, created_at)
-VALUES (13, 9, 51, 'Włóż do wody z węglem aktywowanym albo bezpośrednio do wilgotnej ziemi.', NOW())
-ON CONFLICT (id) DO NOTHING;
+INSERT INTO forum_comments (forum_post_id, user_id, content, created_at)
+VALUES (
+  9,
+  51,
+  'Włóż do wody z węglem aktywowanym albo bezpośrednio do wilgotnej ziemi.',
+  NOW()
+);
