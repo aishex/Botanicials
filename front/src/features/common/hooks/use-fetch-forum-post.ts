@@ -19,5 +19,6 @@ export const useFetchForumPost = (postId: string) => {
     retry: false,
     refetchOnWindowFocus: false,
     staleTime: 1000 * 60 * 10, // 10 minutes
+    enabled: Boolean(postId),
   });
 };

@@ -35,11 +35,11 @@ function PostPage() {
 
   const handleSubmitComment = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newComment.trim()) return;
+    if (!newComment.trim() || !user) return;
     addComment({
       content: newComment,
       forumPostId: Number(postId),
-      userId: user!.id,
+      userId: user.id,
     });
     setNewComment("");
   };
