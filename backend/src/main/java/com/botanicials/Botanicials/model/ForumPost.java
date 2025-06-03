@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Setter;
 import lombok.Getter;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter @Setter
@@ -20,4 +22,7 @@ public class ForumPost {
     private String content;
     private String imageUrl;
     private LocalDateTime createdAt;
+
+    @OneToMany(mappedBy = "forumPost", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ForumComments> comments = new ArrayList<>();
 }

@@ -13,7 +13,8 @@ public class ForumComments {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "forum_post_id")
     private ForumPost forumPost;
 
     @ManyToOne
