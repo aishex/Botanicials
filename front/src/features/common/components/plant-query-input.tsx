@@ -35,6 +35,7 @@ function PlantQueryInput({ className }: { className?: string }) {
       />
       {query ? (
         <button
+          type="button"
           className="cursor-pointer rounded-full text-white"
           onClick={handleClearQuery}
         >

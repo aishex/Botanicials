@@ -46,17 +46,19 @@ function PlantsPage() {
       </section>
 
       <div className="mt-8 flex justify-center">
-        <button
-          onClick={() => fetchNextPage()}
-          disabled={!hasNextPage || isFetching}
-          className="cursor-pointer rounded-full bg-green-800 px-6 py-2 font-semibold text-white transition-colors hover:bg-green-950 disabled:cursor-not-allowed disabled:opacity-50"
-        >
-          {isFetchingNextPage
-            ? "Loading more..."
-            : hasNextPage
-              ? "Load More"
-              : "Nothing more to load"}
-        </button>
+        {hasNextPage && (
+          <button
+            onClick={() => fetchNextPage()}
+            disabled={!hasNextPage || isFetching}
+            className="cursor-pointer rounded-full bg-green-800 px-6 py-2 font-semibold text-white transition-colors hover:bg-green-950 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            {isFetchingNextPage
+              ? "Loading more..."
+              : hasNextPage
+                ? "Load More"
+                : "Nothing more to load"}
+          </button>
+        )}
       </div>
       <div className="text-center text-sm text-gray-500">
         {isFetching && !isFetchingNextPage && "Fetching..."}

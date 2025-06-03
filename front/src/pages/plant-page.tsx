@@ -72,7 +72,7 @@ function PlantPage() {
           <div className="mb-4 grid grid-cols-[1fr_auto_auto] items-start gap-4">
             <h1 className="text-3xl font-bold">{data.common_name}</h1>
             <button
-              className={`cursor-pointer rounded-full bg-pink-400 p-2 whitespace-nowrap text-white transition-colors hover:bg-pink-600 ${
+              className={`cursor-pointer rounded-full bg-pink-600 p-2 whitespace-nowrap text-white transition-colors hover:bg-pink-700 ${
                 !isLoggedIn ||
                 isLoading ||
                 isLoadingWishlist ||

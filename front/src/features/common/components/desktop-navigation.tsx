@@ -22,7 +22,10 @@ export default DesktopNavigation;
 function UserActionLinks() {
   return (
     <div className="ml-8 hidden place-content-end gap-6 lg:flex">
-      <Link to="/wishlist" className="w-fit rounded-full bg-pink-400 p-2">
+      <Link
+        to="/wishlist"
+        className="w-fit rounded-full bg-pink-600 p-2 transition-colors hover:bg-pink-700"
+      >
         <Heart color="white" size={26} fill="transparent" strokeWidth="1.5" />
       </Link>
       <Link to="/collection" className="w-fit rounded-full bg-green-900 p-2">

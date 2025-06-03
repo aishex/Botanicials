@@ -23,5 +23,6 @@ export function useFetchPlantInfo(plantId: string) {
     queryFn: () => fetchPlantInfo(plantId),
     enabled: !!plantId,
     staleTime: Infinity,
+    retry: false,
   });
 }

@@ -5,6 +5,13 @@ import { Plant } from "../../common/types/plant-type";
 function PlantCard({ plant }: { plant: Plant }) {
   const [loaded, setLoaded] = useState(false);
 
+  const plantImage =
+    plant.default_image?.medium_url ===
+      "https://perenual.com/storage/image/upgrade_access.jpg" ||
+    !plant.default_image?.medium_url
+      ? "https://placehold.co/600x400?text=Image+Placeholder"
+      : plant.default_image?.medium_url;
+
   return (
     <Link
       to={`../plants/${plant.id}`}
@@ -12,10 +19,7 @@ function PlantCard({ plant }: { plant: Plant }) {
       className="overflow-hidden rounded-2xl bg-white shadow-lg transition-shadow hover:shadow-2xl"
     >
       <img
-        src={
-          plant.default_image?.medium_url ??
-          "https://placehold.co/600x400?text=Image+Placeholder"
-        }
+        src={plantImage}
         alt={plant.common_name}
         loading="eager"
         onLoad={() => setLoaded(true)}
