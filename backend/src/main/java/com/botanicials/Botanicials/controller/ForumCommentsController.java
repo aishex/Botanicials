@@ -1,13 +1,17 @@
 package com.botanicials.Botanicials.controller;
 
+import com.botanicials.Botanicials.dto.AddCommentDTO;
 import com.botanicials.Botanicials.dto.ForumCommentsDTO;
 import com.botanicials.Botanicials.model.ForumComments;
+import com.botanicials.Botanicials.repository.ForumPostRepository;
+import com.botanicials.Botanicials.repository.UserRepository;
 import com.botanicials.Botanicials.service.ForumCommentsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,11 +22,24 @@ public class ForumCommentsController {
     @Autowired
     ForumCommentsService forumCommentsService;
 
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private ForumPostRepository forumPostRepository;
+
     // add new comment
     @PostMapping
-    public ResponseEntity<ForumCommentsDTO> addComment(@RequestBody ForumComments forumComments){
-        ForumComments savedComment = forumCommentsService.addComment(forumComments);
-        return new ResponseEntity<>(forumCommentsService.convertToDTO(savedComment), HttpStatus.CREATED);
+    public ResponseEntity<ForumCommentsDTO> addComment(@RequestBody AddCommentDTO dto) {
+        ForumComments comment = new ForumComments();
+        comment.setContent(dto.getContent());
+        comment.setCreatedAt(LocalDateTime.now());
+
+        comment.setUser(userRepository.findById(dto.getUserId()).orElseThrow());
+        comment.setForumPost(forumPostRepository.findById(dto.getForumPostId()).orElseThrow());
+
+        ForumComments saved = forumCommentsService.addComment(comment);
+        return new ResponseEntity<>(forumCommentsService.convertToDTO(saved), HttpStatus.CREATED);
     }
 
     // get all comments
