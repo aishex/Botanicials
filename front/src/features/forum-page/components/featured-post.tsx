@@ -4,7 +4,7 @@ import { formatDate, truncateContent } from "../../common/utils/utils";
 
 function FeaturedPost({ featuredPost }: { featuredPost: ForumPost }) {
   return (
-    <Link to={`/forum/${featuredPost.id}`} className="mb-8 block">
+    <Link to={`/forum/${featuredPost.id}`} className="relative z-0 mb-8 block">
       <div
         className="relative overflow-hidden rounded-3xl p-8 text-white"
         style={{
