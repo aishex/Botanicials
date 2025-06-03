@@ -6,6 +6,8 @@ import PlantPage from "./pages/plant-page";
 import PlantsPage from "./pages/plants-page";
 import ForumPage from "./pages/forum-page";
 import PostPage from "./pages/post-page";
+import WishlistPage from "./pages/wishlist-page";
+import CollectionPage from "./pages/collection-page";
 
 function App() {
   return (
@@ -17,6 +19,9 @@ function App() {
         <Route path="plants/:plantId" element={<PlantPage />} />
         <Route path="forum" element={<ForumPage />} />
         <Route path="forum/:postId" element={<PostPage />} />
+        <Route path="wishlist" element={<WishlistPage />} />
+        <Route path="collection" element={<CollectionPage />} />
+
         <Route path="*" element={<div>404 Not Found</div>} />
       </Route>
     </Routes>
