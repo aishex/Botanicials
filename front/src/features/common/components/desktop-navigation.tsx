@@ -24,7 +24,7 @@ function UserActionLinks() {
     <div className="ml-8 hidden place-content-end gap-6 lg:flex">
       <Link
         to="/wishlist"
-        className="w-fit rounded-full bg-pink-600 p-2 transition-colors hover:bg-pink-700"
+        className="w-fit rounded-full bg-[#d17dc0] p-2 transition-colors hover:bg-[#b16ba3]"
       >
         <Heart color="white" size={26} fill="transparent" strokeWidth="1.5" />
       </Link>
