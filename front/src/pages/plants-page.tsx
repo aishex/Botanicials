@@ -17,6 +17,9 @@ function PlantsPage() {
     status,
   } = useFetchPlants(query);
 
+  const isLastPageEmpty = data?.pages[data.pages.length - 1]?.length === 0;
+  const showLoadMore = hasNextPage && !isLastPageEmpty;
+
   if (status === "pending")
     return (
       <Wrapper>
@@ -34,29 +37,30 @@ function PlantsPage() {
   return (
     <Wrapper>
       <h1 className="text-center text-4xl font-bold">All Plants</h1>
-      <section className="grid grid-cols-[repeat(auto-fill,minmax(255px,1fr))] justify-center gap-6">
-        {data &&
-          data.pages.map((group, i) => (
+      {data?.pages[0]?.length === 0 ? (
+        <p className="text-center text-lg text-gray-600">
+          We couldn't find any plants matching your search criteria.
+        </p>
+      ) : (
+        <section className="grid grid-cols-[repeat(auto-fill,minmax(255px,1fr))] justify-center gap-6">
+          {data?.pages.map((group, i) => (
             <React.Fragment key={i}>
               {group.map((plant) => (
                 <PlantCard key={plant.id} plant={plant} />
               ))}
             </React.Fragment>
           ))}
-      </section>
+        </section>
+      )}
 
       <div className="mt-8 flex justify-center">
-        {hasNextPage && (
+        {showLoadMore && (
           <button
             onClick={() => fetchNextPage()}
-            disabled={!hasNextPage || isFetching}
+            disabled={!hasNextPage || isFetching || isLastPageEmpty}
             className="cursor-pointer rounded-full bg-green-800 px-6 py-2 font-semibold text-white transition-colors hover:bg-green-950 disabled:cursor-not-allowed disabled:opacity-50"
           >
-            {isFetchingNextPage
-              ? "Loading more..."
-              : hasNextPage
-                ? "Load More"
-                : "Nothing more to load"}
+            {isFetchingNextPage ? "Loading more..." : "Load More"}
           </button>
         )}
       </div>
