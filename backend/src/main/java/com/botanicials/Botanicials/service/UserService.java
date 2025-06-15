@@ -45,6 +45,7 @@ public class UserService {
         User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
         user.setName(userDetails.getName());
         user.setEmail(userDetails.getEmail());
+        user.setImageUrl(userDetails.getImageUrl());
         return userRepository.save(user);
     }
 
@@ -55,6 +56,7 @@ public class UserService {
         dto.setEmail(user.getEmail());
         dto.setName(user.getName());
         dto.setImageUrl(user.getImageUrl());
+        dto.setGoogleId(user.getGoogleId());
         return dto;
     }
 
