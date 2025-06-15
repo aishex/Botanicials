@@ -26,7 +26,7 @@ Botanicials/
 - **Maven**
 
 ### Frontend
-![](react.gif)
+![](assets/react.gif)
 - **React 19**
 - **Vite**
 - **TypeScript**
@@ -37,7 +37,7 @@ Botanicials/
 ---
 
 ## 🚀 Jak uruchomić
-![](loading.gif)
+![](assets/loading.gif)
 ### 🛠 Wymagania wstępne
 
 - Java 17+
@@ -107,7 +107,7 @@ http://localhost:5173
 
 ### Contributors
 
-![](cat.gif)
+![](assets/cat.gif)
 
 [<img src="https://github.com/duck4912.png" width="50"/>](https://github.com/duck4912)  
 [duck4912](https://github.com/duck4912)
@@ -119,4 +119,15 @@ http://localhost:5173
 [ReQs1](https://github.com/ReQs1)
 
 ---
+
+## 💻 Preview
+
+Poniżej kilka zrzutów ekranu z aplikacji Botanicials:
+
+<img src="assets/homepage.png" width="600" alt="Widok główny aplikacji" />
+
+<img src="assets/forum.png" width="600" alt="Widok forum" />
+
+<img src="assets/post.png" width="600" alt="Widok posta" />
+
 
