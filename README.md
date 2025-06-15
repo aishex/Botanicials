@@ -104,3 +104,12 @@ http://localhost:5173
 🔗 Repozytorium: [Botanicials na GitHubie](https://github.com/aishex/Botanicials)
 
 ---
+
+### Contributors
+
+![](cat.gif)
+
+[![duck4912](https://github.com/duck4912.png?size=50)](https://github.com/duck4912)
+[![aishex](https://github.com/aishex.png?size=50)](https://github.com/aishex)
+[![ReQs1](https://github.com/ReQs1.png?size=50)](https://github.com/ReQs1)
+
