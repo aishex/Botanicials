@@ -109,7 +109,14 @@ http://localhost:5173
 
 ![](cat.gif)
 
-[![duck4912](https://github.com/duck4912.png?size=50)](https://github.com/duck4912)
-[![aishex](https://github.com/aishex.png?size=50)](https://github.com/aishex)
-[![ReQs1](https://github.com/ReQs1.png?size=50)](https://github.com/ReQs1)
+[<img src="https://github.com/duck4912.png" width="50"/>](https://github.com/duck4912)  
+[duck4912](https://github.com/duck4912)
+
+[<img src="https://github.com/aishex.png" width="50"/>](https://github.com/aishex)  
+[aishex](https://github.com/aishex)
+
+[<img src="https://github.com/ReQs1.png" width="50"/>](https://github.com/ReQs1)  
+[ReQs1](https://github.com/ReQs1)
+
+---
 
