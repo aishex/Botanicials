@@ -1,7 +1,7 @@
 # 🌿 Botanicials
 
-**Botanicials** to aplikacja webowa dla miłośników roślin. Umożliwia tworzenie i komentowanie postów na forum, zarządzanie osobistą 
-  kolekcją roślin oraz listą życzeń. Aplikacja składa się z nowoczesnego frontendu React i bezpiecznego backendu w Spring Boot.
+**Botanicials** to aplikacja webowa dla miłośników roślin. Umożliwia tworzenie i komentowanie postów na forum, zarządzanie osobistą
+kolekcją roślin oraz listą życzeń. Aplikacja składa się z nowoczesnego frontendu React i bezpiecznego backendu w Spring Boot.
 
 ---
 
@@ -46,13 +46,22 @@ Botanicials/
 
 ---
 
-### 🧪 Backend (Spring Boot)
+# 🧪 Backend (Spring Boot)
 
+
+##  Przejdź do katalogu backend
 ```bash
-# Przejdź do katalogu backend
 cd backend
+```
+## dodaj plik .env
+```
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+PERENUAL_API=
+```
 
-# Uruchom z Docker Compose
+## Uruchom z Docker Compose
+```
 docker-compose up --build
 ```
 
@@ -63,17 +72,16 @@ http://localhost:8080
 
 ---
 
-### 💻 Frontend (React + Vite)
+# 💻 Frontend (React + Vite)
 
+
+## Przejdź do katalogu frontend
 ```bash
-# Przejdź do katalogu frontend
 cd frontend
-
-# Zainstaluj zależności
-npm install
-
-# Uruchom tryb deweloperski
-npm run dev
+```
+## Uruchom z Docker Compose
+```
+docker-compose up --build
 ```
 
 Domyślnie frontend dostępny będzie pod:
