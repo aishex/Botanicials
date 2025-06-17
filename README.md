@@ -77,7 +77,7 @@ http://localhost:8080
 
 ## Przejdź do katalogu frontend
 ```bash
-cd frontend
+cd front
 ```
 ## Uruchom z Docker Compose
 ```
